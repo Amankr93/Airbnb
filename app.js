@@ -91,7 +91,7 @@ app.use(authRouter);
 app.use( userRouter)
 app.use('/host', hostRouter)
 
-app.use(error404)
+app.use("/",error404)
 
 const PORT =3000;
 const MONGO_URI = process.env.MONGODB_URI;
