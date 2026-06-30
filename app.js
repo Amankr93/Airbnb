@@ -91,7 +91,7 @@ app.use(authRouter);
 app.use( userRouter)
 app.use('/host', hostRouter)
 
-app.use(error404, {pageTitle:"404", currentPage:"404", isLoggedIn:req.session.isLoggedIn})
+app.use(error404)
 
 const PORT =3000;
 const MONGO_URI = process.env.MONGODB_URI;
