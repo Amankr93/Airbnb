@@ -1,0 +1,45 @@
+<%- include('../partials/head') %>
+
+<body>
+        <%- include('../partials/header') %>
+
+        
+        
+    
+    <main>
+        <h1 class="font-display text-red-500 text-3xl font-bold text-center my-4 ">Login with your info</h1>
+        <div class="font-display  px-3 mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[500px] h-[250px] px-2 mt-10 ">
+           <% if(errors.length!==0){ %>
+       <div class="font-display  text-red-500  px-3 mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[600px]  px-2 " >
+        <ul>
+            <% errors.forEach((curr)=>{  %>
+                <li class="font-display list-disc list-inside"> <%= curr %></li>
+
+                <%}) %>
+        </ul>
+       </div>
+       <% } %>  
+        <form action="/login" method="post" class="font-display flex flex-col  justify-between h-full">
+        <input type="email"
+        placeholder="Enter your email"
+        name="email"
+        class="font-display outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        value="<%= oldInput.email %>"
+        required
+        >
+        <input type="password"
+        placeholder="Enter your password"
+        name="password"
+       
+        class="font-display outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        >   
+        
+        <input type="submit" value="Login" class="font-display bg-red-500 py-1.5 my-3 text-white font-semibold text-[18px] rounded-md capitalize">
+    </form>
+    
+        </div>
+        
+    </main>
+    
+</body>
+</html>

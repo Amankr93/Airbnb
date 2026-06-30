@@ -1,0 +1,80 @@
+
+<%- include('../partials/head') %>
+<body class="page-body">
+    <%- include('../partials/header') %>
+
+    <main class="page-main">
+        <section class="hero-section">
+            <div class="hero-copy">
+                <span class="hero-badge">Your next getaway starts here</span>
+                <h1 class="hero-heading">Stay in beautiful homes, hosted by local people.</h1>
+                <p class="hero-text">Explore your favorite cities, discover unique stays, and book comfortable homes with confidence.</p>
+                <div class="hero-actions">
+                    <a href="/homes" class="btn btn-primary">Explore homes</a>
+                    <% if(!isLoggedIn){ %>
+                        <a href="/signup" class="btn btn-secondary">Create account</a>
+                    <% } %>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <strong>Verified stays</strong>
+                        <span>Reviewed by guests worldwide.</span>
+                    </div>
+                    <div class="feature-card">
+                        <strong>Flexible booking</strong>
+                        <span>Easy checkout and support.</span>
+                    </div>
+                    <div class="feature-card">
+                        <strong>Great locations</strong>
+                        <span>Homes near top attractions.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" role="img" aria-label="Beautiful home stay"></div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <div>
+                    <h2>Featured homes</h2>
+                    <p>Hand-picked stays from our most popular listings.</p>
+                </div>
+                <a href="/homes" class="section-link">View all homes →</a>
+            </div>
+
+            <% if (registeredHomes && registeredHomes.length > 0) { %>
+                <div class="cards-grid">
+                    <% registeredHomes.slice(0, 6).forEach((home) => { %>
+                        <article class="listing-card">
+                            <div class="listing-image">
+                                <img src="/<%= home.photo %>" alt="<%= home.houseName %>">
+                            </div>
+                            <div class="listing-body">
+                                <div class="listing-top">
+                                    <div>
+                                        <h3><%= home.houseName %></h3>
+                                        <p><%= home.location %></p>
+                                    </div>
+                                    <span class="rating"><%= home.rating || '4.8' %> ★</span>
+                                </div>
+                                <p class="listing-description"><%= home.description || 'Comfortable stay with essential amenities and local charm.' %></p>
+                                <div class="listing-bottom">
+                                    <span class="price">Rs. <%= home.price %>/night</span>
+                                    <% if (user && user.type === 'guest') { %>
+                                        <a href="/homes/<%= home._id %>" class="btn btn-primary btn-small">View details</a>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </article>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <div class="empty-state">
+                    <p>No homes are available right now. Please check back later or sign up if you are a host.</p>
+                    <a href="/signup" class="btn btn-primary">Get started</a>
+                </div>
+            <% } %>
+        </section>
+    </main>
+</body>
+</html>

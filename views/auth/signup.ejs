@@ -1,0 +1,76 @@
+<%- include('../partials/head') %>
+<body>
+<%- include('../partials/header') %>
+ <main>
+        <h1 class="text-red-500 text-3xl font-bold text-center my-4 ">Register as a new user</h1>
+        <% if(errors.length!==0){ %>
+       <div class=" text-red-500  px-3 mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[600px]  px-2 " >
+        <ul>
+            <% errors.forEach((curr)=>{  %>
+                <li class="list-disc list-inside"> <%= curr %></li>
+
+                <%}) %>
+        </ul>
+       </div>
+       <% } %>
+        <div class=" px-3 mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[600px]  px-2 mt-4 ">
+            
+        <form action="/signup" method="post" class="flex flex-col   gap-2 h-full">
+        <input type="text"
+        value="<%=oldInput.firstName %>"
+        placeholder="Enter your first name"
+        name="firstName"
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        required
+        >
+        <input type="text"
+        placeholder="Enter your last name"
+        name="lastName"
+        value="<%=oldInput.lastName%>"
+
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        
+        >
+        <input type="email"
+        placeholder="Enter your email"
+        name="email"
+        value="<%= oldInput.email%>"
+
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        required
+        >
+        <input type="password"
+        placeholder="Enter your password"
+        name="password"
+       
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        >   
+        <input type="password"
+        placeholder="Confirm  your password"
+        name="confirm password"
+       
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        >   
+        <div class="flex gap-2 items-center my-2" role="radiogroup" aria-label="User type">
+            <label class="cursor-pointer">
+                <input class="peer sr-only" type="radio" name="userType" id="host" value="host" <%= oldInput.userType==='host'? 'checked':''  %> >
+                <span class="inline-flex items-center gap-2 px-4 py-2 border rounded-md text-sm border-gray-300 peer-checked:bg-red-500 peer-checked:text-white peer-checked:border-red-500">Host</span>
+            </label>
+            <label class="cursor-pointer">
+                <input class="peer sr-only" type="radio" name="userType" id="guest" value="guest" <%= oldInput.userType==='guest'? 'checked':''  %> >
+                <span class="inline-flex items-center gap-2 px-4 py-2 border rounded-md text-sm border-gray-300 peer-checked:bg-red-500 peer-checked:text-white peer-checked:border-red-400">Guest</span>
+            </label>
+        </div>
+        <label for="terms">
+            <input type="checkbox" name="terms" checked required id="terms">
+            Accept the terms and conditions
+        </label>
+        <input type="submit" value="Sign In" class="bg-red-500 py-1.5 my-3 text-white font-semibold text-[18px] rounded-md capitalize">
+    </form>
+    
+        </div>
+        
+    </main>
+    
+    
+</body>

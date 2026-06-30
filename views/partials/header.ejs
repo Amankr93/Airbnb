@@ -1,0 +1,25 @@
+<header class="site-header">
+    <nav class="site-nav">
+        <a href="/" class="brand">Airbnb</a>
+        <ul class="nav-list">
+            <% if(isLoggedIn){%>
+                <% if(user && user.userType === 'guest'){ %>
+                    <li><a href="/homes" class="nav-item">Homes</a></li>
+                    <li><a href="/favourites" class="nav-item">Favourites</a></li>
+                    <li><a href="/bookings" class="nav-item">Bookings</a></li>
+                <% } else { %>
+                    <li><a href="/host/addHome" class="nav-item">Add Home</a></li>
+                    <li><a href="/host/hostHomeList" class="nav-item">Host Homes</a></li>
+                <% } %>
+                <li>
+                    <form action="/logout" method="post" class="nav-form">
+                        <button type="submit" class="btn btn-secondary">Logout</button>
+                    </form>
+                </li>
+            <% } else { %>
+                <li><a href="/signup" class="btn btn-primary">Sign Up</a></li>
+                <li><a href="/login" class="btn btn-secondary">Login</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

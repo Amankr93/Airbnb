@@ -1,0 +1,42 @@
+<%- include('../partials/head') %>
+
+<body>
+        <%- include('../partials/header') %>
+
+        
+        
+    
+    <main>
+        <h1 class="text-red-500 text-3xl font-bold text-center my-4 ">Register Your Home</h1>
+        <div class=" px-3 mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[500px] h-[250px] px-2 mt-10 ">
+            
+        <form action="/host/addHome" method="post" class="flex flex-col  justify-between h-full">
+        <input type="text"
+        placeholder="enter your House Name"
+        name="houseName"
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        >
+        <input type="text"
+        placeholder="Price per night"
+        name="price"
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        >   
+        <input type="text"
+        placeholder="Location"
+        name="location"
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        >   
+        <input type="text"
+        placeholder="Rating"
+        name="rating"
+        class="outline-none border border-gray-500 rounded-md h-[35px] px-2 placeholder:capitalize"
+        >   
+        <input type="submit" value="submit" class="bg-red-500 py-[6px] my-3 text-white font-semibold text-[18px] rounded-md capitalize">
+    </form>
+    
+        </div>
+        
+    </main>
+    
+</body>
+</html>
