@@ -91,7 +91,8 @@ app.use(authRouter);
 app.use( userRouter)
 app.use('/host', hostRouter)
 
-app.use(error404)
+app.use(error404, {pageTitle:"404", currentPage:"404", isLoggedIn:req.session.isLoggedIn})
+
 const PORT =3000;
 const MONGO_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGO_URI).then(()=>{
