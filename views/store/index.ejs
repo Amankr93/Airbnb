@@ -39,7 +39,7 @@
                     <h2>Featured homes</h2>
                     <p>Hand-picked stays from our most popular listings.</p>
                 </div>
-                <%= if (isLoggedin&&user.type==='guest') { %>
+                <% if(user && user.userType === 'guest') { %>
                 <a href="/homes" class="section-link">View all homes →</a>
                 <% } %>
             </div>
@@ -62,9 +62,9 @@
                                 <p class="listing-description"><%= home.description || 'Comfortable stay with essential amenities and local charm.' %></p>
                                 <div class="listing-bottom">
                                     <span class="price">Rs. <%= home.price %>/night</span>
-                                    <%= if (isLoggedin && user.type === 'guest') { %>
-                                        <a href="/homes/<%= home._id %>" class="btn btn-primary btn-small">View details</a>
-                                    <% } %>
+                                    
+                                        
+                                   
                                 </div>
                             </div>
                         </article>
