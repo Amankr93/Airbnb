@@ -3,7 +3,7 @@ const fs = require('fs')
 const rootDir = require('../utils/pathUtils');
 
 const Home = require('../models/home')
-// const Favourites = require('../models/favourite')
+
 const User = require('../models/user')
 
 
@@ -16,7 +16,7 @@ exports.getaddHome = (req, res, next) => {
 
     const user = req.session.user;
 
-    res.render('./host/addHome.ejs', { user, pageTitle: "addHome", editing: false, isLoggedIn: req.session.isLoggedIn })
+    res.render('host/addHome.ejs', { user, pageTitle: "addHome", editing: false, isLoggedIn: req.session.isLoggedIn })
 }
 exports.postaddHome = (req, res, next) => {
 
@@ -33,10 +33,10 @@ exports.postaddHome = (req, res, next) => {
 
         home.save().then((home) => {
             User.findById(req.session.user._id).then((user)=>{
-                console.log(home);
+                
                 user.homes.push(home._id)
                 user.save()
-                // console.log(home, "from save function")
+              
                 res.redirect('/host/hostHomeList');
             }).catch((err)=>{
                 console.log("home not uploaded in host database", home);
@@ -59,7 +59,7 @@ exports.postEditHome = (req, res, next) => {
         home.price = price;
         home.location = location;
         home.rating = rating;
-        console.log(req.files)
+   
         if (req.files) {
             if (req.files.photo) {
                 const photoPath = path.join(rootDir, home.photo);
@@ -109,7 +109,7 @@ exports.getHostHomes =async (req, res, next) => {
 
 }
 exports.getEditHome = (req, res, next) => {
-    // res.send("dfjidg")
+   
     const homeId = req.params.homeId;
     const editing = req.query.editing === 'true';
 
@@ -122,7 +122,7 @@ exports.getEditHome = (req, res, next) => {
         else {
             const user = req.session.user;
 
-            res.render('./host/addHome', { user, home, pageTitle: "Edit Home", editing: editing, isLoggedIn: req.session.isLoggedIn })
+            res.render('host/addHome', { user, home, pageTitle: "Edit Home", editing: editing, isLoggedIn: req.session.isLoggedIn })
         }
 
     })
@@ -131,7 +131,7 @@ exports.getEditHome = (req, res, next) => {
 exports.postDeleteHome = (req, res, next) => {
     const id = req.params.homeId;
     Home.findOneAndDelete({ _id: id }).then((home) => {
-        // Favourites.deleteById(id);
+     
         const photoPath = path.join(rootDir, home.photo);
                 fs.unlink(photoPath, (err) => {
                     console.log(err)

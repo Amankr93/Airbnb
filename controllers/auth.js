@@ -3,7 +3,7 @@ const User = require("../models/user");
 const bcrypt = require('bcryptjs');
 
 exports.getLogin = (req, res, next) => {
-    // console.log("logged in")
+    
     res.render('auth/login', { pageTitle: "Login", isLoggedIn: req.session.isLoggedIn ,
          errors:[],
             oldInput: {email: ""}
@@ -55,7 +55,7 @@ exports.postLogout = (req, res, next) => {
    return  res.redirect('/login');
 }
 exports.getSignUp = (req, res, next) => {
-    // console.log("logged in")
+  
     res.render('auth/SignUp', {
         pageTitle: "SignUp", isLoggedIn: req.session.isLoggedIn, errors: [],
         oldInput: { firstName: "", lastName: "", email: "", userType: "", terms: "" }
@@ -125,7 +125,6 @@ exports.postSignUp = [
         if (userExists) {
             errors.push("Email already exists");
         }
-        //    console.log(errors)
 
 
         if (!errors.length == 0) {
