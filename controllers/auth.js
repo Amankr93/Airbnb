@@ -56,7 +56,7 @@ exports.postLogout = (req, res, next) => {
 }
 exports.getSignUp = (req, res, next) => {
   
-    res.render('auth/SignUp', {
+    res.render('auth/signup', {
         pageTitle: "SignUp", isLoggedIn: req.session.isLoggedIn, errors: [],
         oldInput: { firstName: "", lastName: "", email: "", userType: "", terms: "" }
     });
